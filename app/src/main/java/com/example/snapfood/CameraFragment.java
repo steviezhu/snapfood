@@ -1,5 +1,6 @@
 package com.example.snapfood;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +68,9 @@ public class CameraFragment extends Fragment {
         cameraview.addCameraListener(new CameraListener() {
             @Override
             public void onPictureTaken(PictureResult result) {
+                final ProgressDialog progressDialog = ProgressDialog.show(getActivity(),"Please wait...", "Recognizing food");
+                progressDialog.setCancelable(true);
+
                 // A Picture was taken!
                 result.toBitmap(544, 544, new BitmapCallback() {
                     @Override
@@ -75,6 +79,7 @@ public class CameraFragment extends Fragment {
                        new FoodRecognitionTask(new FoodServiceCallback<JSONObject>() {
                            @Override
                            public void finishRecognition(JSONObject response, FoodRecognitionException exception) {
+                               progressDialog.cancel();
                                if (exception != null) {
                                    // handle exception gracefully
                                    Log.d("bugg","exception on foodtask: "+ exception.getMessage());

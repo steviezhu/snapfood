@@ -20,7 +20,7 @@ import java.net.URLConnection;
 
 public class FoodRecognitionClient {
 
-    private static final String ENDPOINT = "https://api.caloriemama.ai/v1/foodrecognition/full";
+    private static final String ENDPOINT = "https://api-2445582032290.production.gw.apicast.io/v1/foodrecognition/full?user_key=a3c387656349782ef7c4ea3c73165bc3";
 
     private String boundary;
     private static final String LINE_FEED = "\r\n";
@@ -42,7 +42,6 @@ public class FoodRecognitionClient {
         httpConn.setDoInput(true);
         httpConn.setRequestProperty("Content-Type",
                 "multipart/form-data; boundary=" + boundary);
-        httpConn.setRequestProperty("Authorization", "OAuth " + foodTask.getToken());
         Log.d("bugg"," token: "+ foodTask.getToken());
         outputStream = httpConn.getOutputStream();
         writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"),
