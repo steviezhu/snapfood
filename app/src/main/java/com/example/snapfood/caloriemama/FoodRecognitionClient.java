@@ -20,7 +20,7 @@ import java.net.URLConnection;
 
 public class FoodRecognitionClient {
 
-    private static final String ENDPOINT = "https://api-2445582032290.production.gw.apicast.io/v1/foodrecognition/full?user_key=a3c387656349782ef7c4ea3c73165bc3";
+    private static final String ENDPOINT = "https://api-2445582032290.production.gw.apicast.io/v1/foodrecognition?user_key=a3c387656349782ef7c4ea3c73165bc3";
 
     private String boundary;
     private static final String LINE_FEED = "\r\n";

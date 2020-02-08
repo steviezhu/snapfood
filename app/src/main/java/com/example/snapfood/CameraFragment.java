@@ -1,6 +1,7 @@
 package com.example.snapfood;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,6 +85,9 @@ public class CameraFragment extends Fragment {
                                    // handle exception gracefully
                                    Log.d("bugg","exception on foodtask: "+ exception.getMessage());
                                } else {
+                                   Intent intent = new Intent(getActivity(),IngredientActivity.class);
+                                   intent.putExtra("json",response.toString());
+                                   startActivity(intent);
                                    Log.d("bugg","response: "+ response.toString());
                                }
                            }
