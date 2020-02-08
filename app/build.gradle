@@ -12,6 +12,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -29,4 +30,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.google.android.material:material:1.1.0'
-    api 'com.otaliastudios:cameraview:2.6.1'}
+    'dev.dworks.libs:volleyplus:0.1.4'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    api 'com.otaliastudios:cameraview:2.6.1'
+}
