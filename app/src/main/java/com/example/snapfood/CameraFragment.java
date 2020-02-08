@@ -1,14 +1,36 @@
 package com.example.snapfood;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.snapfood.caloriemama.FoodRecognitionException;
+import com.example.snapfood.caloriemama.FoodRecognitionTask;
+import com.example.snapfood.caloriemama.FoodServiceCallback;
+import com.example.snapfood.caloriemama.FoodTask;
+import com.otaliastudios.cameraview.BitmapCallback;
+import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
+import com.otaliastudios.cameraview.PictureResult;
+import com.otaliastudios.cameraview.VideoResult;
+import com.otaliastudios.cameraview.controls.PictureFormat;
+import com.otaliastudios.cameraview.size.Size;
+import com.otaliastudios.cameraview.size.SizeSelector;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CameraFragment extends Fragment {
 
@@ -39,8 +61,53 @@ public class CameraFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
-       CameraView cameraview = view.findViewById(R.id.camera);
+       final CameraView cameraview = view.findViewById(R.id.camera);
         cameraview.setLifecycleOwner(getViewLifecycleOwner());
+
+        cameraview.addCameraListener(new CameraListener() {
+            @Override
+            public void onPictureTaken(PictureResult result) {
+                // A Picture was taken!
+                result.toBitmap(544, 544, new BitmapCallback() {
+                    @Override
+                    public void onBitmapReady(@Nullable Bitmap bitmap) {
+                        FoodTask foodTask = new FoodTask( bitmap);
+                       new FoodRecognitionTask(new FoodServiceCallback<JSONObject>() {
+                           @Override
+                           public void finishRecognition(JSONObject response, FoodRecognitionException exception) {
+                               if (exception != null) {
+                                   // handle exception gracefully
+                                   Log.d("bugg","exception on foodtask: "+ exception.getMessage());
+                               } else {
+                                   Log.d("bugg","response: "+ response.toString());
+                               }
+                           }
+                       }).execute(foodTask);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onVideoTaken(VideoResult result) {
+                // A Video was taken!
+            }
+
+            // And much more
+        });
+        Button camerTakeButton = view.findViewById(R.id.cameraButton);
+        camerTakeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cameraview.takePicture();
+            }
+        });
+
+        cameraview.setPictureFormat(PictureFormat.JPEG);
+
+
+
+
         return view;
     }
 
