@@ -12,15 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.snapfood.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class ConfirmIngredientAdapters extends RecyclerView.Adapter<ConfirmIngredientAdapters.ViewHolder> {
 
     private List<String> ingredients;
+    private HashSet<String> actualIngridients;
     private Context context;
     public ConfirmIngredientAdapters(Context context,List<String> ingredients){
         this.ingredients = ingredients;
         this.context=context;
+        this.actualIngridients = new HashSet<>(ingredients);
     }
 
     @NonNull
@@ -37,14 +41,27 @@ public class ConfirmIngredientAdapters extends RecyclerView.Adapter<ConfirmIngre
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ConfirmIngredientAdapters.ViewHolder holder, int position) {
-        holder.checkBox.setActivated(true);
+    public void onBindViewHolder(@NonNull final ConfirmIngredientAdapters.ViewHolder holder, int position) {
         holder.textView.setText(ingredients.get(position));
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!holder.checkBox.isChecked()){
+                    actualIngridients.remove(holder.textView.getText().toString());
+                } else {
+                    actualIngridients.add(holder.textView.getText().toString());
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return ingredients.size();
+    }
+
+    public HashSet<String> getMyData() {
+        return actualIngridients;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
