@@ -62,54 +62,7 @@ public class SearchRecipeFragment extends Fragment {
         ingredients = view.findViewById(R.id.ingredients);
         results = view.findViewById(R.id.recipe);
         search = view.findViewById(R.id.search);
-
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-                String url = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=96c1ee6ca45b46d7a4a0ff1bf85533af&number=3&ingredients="+ingredients.getText();
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-
-                            @Override
-                            public void onResponse(String response) {
-                                results.setText(" ");
-                                try {
-                                    JSONArray recipes = new JSONArray(response);
-                                    for (int k = 0 ; k < recipes.length(); k++) {
-                                        JSONObject recipeOne = (JSONObject) recipes.get(k);
-                                        results.append("\nName of Dish: " + recipeOne.get("title"));
-
-                                        JSONArray usedOne = recipeOne.getJSONArray("usedIngredients");
-                                        results.append("\nUsed Ingredients: \n");
-                                        for (int i = 0; i < usedOne.length(); i++) {
-                                            JSONObject usedIngredient = (JSONObject) usedOne.get(i);
-                                            results.append(i + 1 + ". " + usedIngredient.get("name") + "\n");
-                                        }
-
-                                        JSONArray missedOne = recipeOne.getJSONArray("missedIngredients");
-                                        results.append("\nMissed Ingredients: \n");
-                                        for (int i = 0; i < missedOne.length(); i++) {
-                                            JSONObject missedIngredient = (JSONObject) missedOne.get(i);
-                                            results.append(i + 1 + ". " + missedIngredient.get("name") + "\n");
-                                        }
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        results.setText("Failed");
-                    }
-                });
-
-                queue.add(stringRequest);
-            }
-        });
-
         return view;
+
     }
 }

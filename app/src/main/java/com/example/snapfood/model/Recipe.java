@@ -1,8 +1,11 @@
 package com.example.snapfood.model;
 
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Recipe {
+public class Recipe implements Serializable {
     String name;
     List<String> hasIngredients;
     List<String> needIngredients;
@@ -31,9 +34,17 @@ public class Recipe {
         this.needIngredients = needIngredients;
     }
 
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "name='" + name + '\'' +
+                ", hasIngredients=" + hasIngredients +
+                ", needIngredients=" + needIngredients +
+                '}';
+    }
+
     public Recipe(String name) {
         this.name = name;
     }
-
 
 }

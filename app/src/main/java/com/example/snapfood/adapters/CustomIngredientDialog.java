@@ -34,6 +34,12 @@ public class CustomIngredientDialog extends Dialog {
     Context context;
     List<String> ingredients;
     Button yesButton, noButton;
+    ExampleDialogListener exampleDialogListener = new ExampleDialogListener() {
+        @Override
+        public void applyTexts(List<Recipe> recipes) {
+
+        }
+    };
     public CustomIngredientDialog(@NonNull Context context, List<String> strings) {
         super(context);
         this.context=context;
@@ -112,11 +118,15 @@ public class CustomIngredientDialog extends Dialog {
                                     JSONObject missedIngredient = (JSONObject) missedOne.get(i);
                                     missingIngrident.add(missedIngredient.get("name")+"");
                                 }
+                                recipe.setHasIngredients(usedIngridient);
+                                recipe.setNeedIngredients(missingIngrident);
                                 recipes.add(recipe);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        ((ExampleDialogListener)context).applyTexts(recipes);
+                        dismiss();
                     }
                 }, new Response.ErrorListener(){
 
@@ -126,5 +136,14 @@ public class CustomIngredientDialog extends Dialog {
         });
 
         queue.add(stringRequest);
+    }
+
+    @Override
+    public void setOnDismissListener(@Nullable OnDismissListener listener) {
+        super.setOnDismissListener(listener);
+    }
+
+    public interface ExampleDialogListener {
+        void applyTexts(List<Recipe> recipes);
     }
 }
