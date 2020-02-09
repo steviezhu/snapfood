@@ -1,7 +1,9 @@
 package com.example.snapfood;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,8 @@ import com.example.snapfood.caloriemama.FoodRecognitionException;
 import com.example.snapfood.caloriemama.FoodRecognitionTask;
 import com.example.snapfood.caloriemama.FoodServiceCallback;
 import com.example.snapfood.caloriemama.FoodTask;
+import com.example.snapfood.model.Recipe;
+import com.google.gson.Gson;
 import com.otaliastudios.cameraview.BitmapCallback;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
@@ -87,7 +91,7 @@ public class CameraFragment extends Fragment {
                                } else {
                                    Intent intent = new Intent(getActivity(),IngredientActivity.class);
                                    intent.putExtra("json",response.toString());
-                                   startActivity(intent);
+                                   startActivityForResult(intent,99);
                                    Log.d("bugg","response: "+ response.toString());
                                }
                            }
@@ -115,9 +119,25 @@ public class CameraFragment extends Fragment {
         cameraview.setPictureFormat(PictureFormat.JPEG);
 
 
-
-
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==99){
+            if(data!=null) {
+                List<Recipe> recipes = (List<Recipe>) data.getSerializableExtra("result");
+                Gson gson = new Gson();
+                String json = gson.toJson(recipes);
+                SharedPreferences sharedpreferences;
+                String MyPREFERENCES = "MyPrefs" ;
+                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("recipes", json);
+                editor.apply();
+                ((MainActivity)getActivity()).viewPager.setCurrentItem(2);
+            }
+        }
+    }
 }

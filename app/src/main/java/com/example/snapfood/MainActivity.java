@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity  {
-    ViewPager viewPager;
+    public ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

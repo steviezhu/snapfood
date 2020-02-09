@@ -5,24 +5,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.snapfood.adapters.ConfirmIngredientAdapters;
 import com.example.snapfood.adapters.CustomIngredientDialog;
+import com.example.snapfood.model.Recipe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class IngredientActivity extends AppCompatActivity {
-
+public class IngredientActivity extends AppCompatActivity implements CustomIngredientDialog.ExampleDialogListener {
+    List<Recipe> recipes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,7 @@ public class IngredientActivity extends AppCompatActivity {
         List<String> strings = new ArrayList<String>(hashSet);
         Log.d("qwerty","size: "+ strings.size());
         CustomIngredientDialog customIngredientDialog = new CustomIngredientDialog(this, strings);
-        customIngredientDialog.setCancelable(false);
+        customIngredientDialog.setCancelable(true);
         customIngredientDialog.show();
 
 
@@ -86,4 +89,12 @@ public class IngredientActivity extends AppCompatActivity {
         return list;
     }
 
+    @Override
+    public void applyTexts(List<Recipe> recipes) {
+        this.recipes = recipes;
+        Intent intent = new Intent();
+        intent.putExtra("result", (Serializable) recipes);
+        setResult(99,intent);
+        finish();
+    }
 }
