@@ -134,7 +134,7 @@ public class CameraFragment extends Fragment {
                 String MyPREFERENCES = "MyPrefs" ;
                 sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("TAG_NAME", json);
+                editor.putString("recipes", json);
                 editor.apply();
                 ((MainActivity)getActivity()).viewPager.setCurrentItem(2);
             }
