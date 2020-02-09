@@ -103,7 +103,10 @@ public class CustomIngredientDialog extends Dialog {
                             JSONArray recipesarray = new JSONArray(response);
                             for (int k = 0 ; k < recipesarray.length(); k++) {
                                 JSONObject recipeOne = (JSONObject) recipesarray.get(k);
+
                                 Recipe recipe = new Recipe(recipeOne.get("title")+"");
+                                int id= (int) recipeOne.get("id");
+                                recipe.setId(id);
                                 JSONArray usedOne = recipeOne.getJSONArray("usedIngredients");
                                 List<String> usedIngridient = new ArrayList<>();
                                 for (int i = 0; i < usedOne.length(); i++) {

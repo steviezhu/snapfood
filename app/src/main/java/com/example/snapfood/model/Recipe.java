@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Recipe implements Serializable {
     String name;
+    int id;
     List<String> hasIngredients;
     List<String> needIngredients;
 
@@ -16,6 +17,14 @@ public class Recipe implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public List<String> getHasIngredients() {
