@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="">
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="218dp"
+        android:layout_marginBottom="543dp"
+        app:srcCompat="@drawable/group2" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="227dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="567dp"
+        app:srcCompat="@drawable/snapfood" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="24dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="255dp"
+        android:layout_marginEnd="303dp"
+        android:layout_marginBottom="439dp"
+        app:srcCompat="@drawable/number1" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="253dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="257dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="455dp"
+        android:fontFamily="sans-serif"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        tools:text="Snap a photo of food that you want to use up" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="358dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="336dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        tools:text="Snapfood will suggest recipes that use those ingredients" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="297dp"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="461dp"
+        android:layout_marginEnd="-27dp"
+        android:layout_marginBottom="201dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="16dp"
+        tools:text="View your past recipes and top ingredients as well as discover new ones." />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="24dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="463dp"
+        android:layout_marginEnd="302dp"
+        android:layout_marginBottom="228dp"
+        app:srcCompat="@drawable/number3" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="608dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="54dp"
+        app:srcCompat="@drawable/group4" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="302dp"
+        android:layout_marginBottom="332dp"
+        android:src="@drawable/number2" />
+
+</RelativeLayout>
