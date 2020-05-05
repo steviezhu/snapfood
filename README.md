@@ -7,5 +7,7 @@ Snapfood is an Android application that allows users to take a picture of the in
 ## Built With
 
 Spoonacular Recipe API
+
 CalorieMama Ingredient Detection API
+
 Android Studio
